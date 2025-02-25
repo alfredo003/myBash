@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 
-void gettokens(t_token *tokens, t_shell *shell, char *input_line)
+static void gettokens(t_token *tokens, t_shell *shell, char *input_line)
 {
 	tokens = (t_token *)malloc(sizeof(t_token) * 10000);
 	ft_memset(tokens, 0, sizeof(t_token) * 10000);

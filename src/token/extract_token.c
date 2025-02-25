@@ -8,7 +8,7 @@ static int is_matching_quote_closed(char *str, int i, int quote)
 			return (1);
 	}
 	return (0);
-} 
+}
 
 static void toggle_quote_state(int *is_single_quoted, int *is_double_quoted,char *input, int *index)
 {

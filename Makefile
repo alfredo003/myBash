@@ -6,10 +6,15 @@ RM = rm -rf
 LIBFT_DIR = ./libs/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = main.c \
-		init.c \
-		utils/readline.c \
-		utils/release_memory.c 
+SRCS =  src/main.c \
+		src/init.c \
+		src/utils/readline.c \
+		src/utils/release_memory.c \
+		src/token/process_expansion.c \
+		src/token/lexer.c \
+		src/token/lex_process.c \
+		src/token/extract_token.c \
+		src/env/get_env.c 
 
 OBJS = $(SRCS:.c=.o)
 

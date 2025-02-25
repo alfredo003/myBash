@@ -3,6 +3,8 @@
         "*.sqlbook": "sql",
         "*.ndjson": "jsonl",
         "*.dbclient-js": "javascript",
-        "stract_tokens": "cpp"
+        "stract_tokens": "cpp",
+        "ft_fdf": "cpp",
+        "minishell.h": "c"
     }
 }

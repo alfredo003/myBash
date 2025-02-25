@@ -3,7 +3,7 @@
 void init_shell(t_shell *shell)
 {
      char *input_line;
-     int process_status;
+    // int process_status;
 
      while(shell->status.exit_status == 0)
      {
