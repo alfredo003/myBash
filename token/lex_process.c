@@ -18,12 +18,11 @@ void	process_tokens(t_shell *shell, char *line, t_token *tokens)
 	while (line[i])
 	{
 		skip_whitespace(line, &i);
-		current_str = return_str(line, &i, &in_quotes);
+		current_str = extract_token(line, &i, &in_quotes);
 		current_str = expand_variables(shell, current_str, 0);
         tokens[token_index].str = ft_strdup(current_str);
         tokens[token_index].type = type_str(current_str, in_quotes);
         token_index++;
-
 		skip_whitespace(line, &i);
 		process_separator(line, &i, tokens, &token_index);
 		free_str_and_set_null(&current_str);
