@@ -14,7 +14,10 @@ SRCS =  src/main.c \
 		src/token/lexer.c \
 		src/token/lex_process.c \
 		src/token/extract_token.c \
-		src/env/get_env.c 
+		src/token/calculate_expansion.c \
+		src/token/process_expansion.c \
+		src/token/process_quote.c \
+		src/env/get_env.c
 
 OBJS = $(SRCS:.c=.o)
 
