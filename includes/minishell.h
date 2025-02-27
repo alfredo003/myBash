@@ -49,9 +49,10 @@ void    init_shell();
 void	lexical_analysis(t_shell *shell, char *line);
 void	ft_free(void *ptr_to_free);
 void	process_tokens(t_shell *shell, char *line, t_token *tokens);
+void handle_quotes(t_shell *shell, char *input, int *index);
 
 int     ft_readline(t_shell *shell, char **line);
-
+int calculate_expanded_length(t_shell *shell, char *input, int is_heredoc);
 
 char	*ft_getenv(t_env *env, char *var);
 char *extract_token(char *input, int *index, int *has_quotes);
