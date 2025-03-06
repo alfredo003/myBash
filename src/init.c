@@ -11,6 +11,6 @@ void init_shell(t_shell *shell)
           shell->tokens = NULL;
           if (!ft_readline(shell, &input_line))
                break ;
-          lexical_analysis(shell,input_line);
+          lexical_analysis(shell, input_line);
      }
 }
