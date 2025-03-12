@@ -24,6 +24,7 @@ typedef struct s_status_shell
 typedef struct s_tmp_values
 {
     int active_quote;
+    char    *str;
 } t_tmp_values;
 
 typedef struct s_env
@@ -45,16 +46,23 @@ typedef struct s_shell
 } t_shell;
 
 
-void    init_shell();
+void    init_shell(t_shell *shell);
+int     ft_readline(t_shell *shell, char **line);
 void	lexical_analysis(t_shell *shell, char *line);
 void	ft_free(void *ptr_to_free);
 void	process_tokens(t_shell *shell, char *line, t_token *tokens);
-void handle_quotes(t_shell *shell, char *input, int *index);
-
-int     ft_readline(t_shell *shell, char **line);
-int calculate_expanded_length(t_shell *shell, char *input, int is_heredoc);
-
+char    *extract_token(char *input, int *index_inp, int *has_quotes);
+char    *process_expansion(t_shell *shell, char *input, int is_heredoc);
+int     calculate_expanded_length(t_shell *shell, char *input, int is_heredoc);
+int     get_variable_length(t_shell *shell, char *input, int *index);
+int     handle_return_value(t_shell *shell, int *index, int *total_length);
 char	*ft_getenv(t_env *env, char *var);
-char *extract_token(char *input, int *index, int *has_quotes);
-char *process_expansion(t_shell *shell, char *input, int is_heredoc);
+bool     is_valid_token(char *str, int i, t_shell *shell);
+bool     is_quote_unclosed(char *str, int i, char quote, t_shell *shell);
+void    handle_quotes(t_shell *shell, char *input, int *index);
+void	ft_free_tokens(t_token *tokens);
+void	perform_variable_expansion(t_shell *shell, char *input, char *expanded, int in_heredoc);
+void    handle_variable_expansion(t_shell *shell, char *expanded, int *index_inp, int *index_exp);
+char	*get_env_value(t_shell *shell, char *input, int *index_inp);
+
 #endif

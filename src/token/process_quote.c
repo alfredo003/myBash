@@ -1,49 +1,36 @@
 #include "minishell.h"
 
-int	ft_is_closed(char *str, int i, char quote)
+bool	is_quote_unclosed(char *str, int i, char quote, t_shell *shell)
+{
+	if (shell->tmp.active_quote == quote)
+		return (false);
+	while (str[++i])
+	{
+		if (str[i] == quote && shell->tmp.active_quote != quote)
+			return (false);
+	}
+	return (true);
+}
+
+bool	ft_is_closed(char *str, int i, char quote)
 {
 	while (str[++i])
 	{
 		if (str[i] == quote)
-			return (1);
+			return (true);
 	}
-	return (0);
+	return (false);
 }
 
-int	ft_is_unclosed_quote(char *str, int i, char quote, t_shell *shell)
+void	handle_quotes(t_shell *shell, char *input, int *index_inp)
 {
-	if (shell->tmp.active_quote == quote)
-		return (0);
-	else if (!shell->tmp.active_quote)
+	char quote = input[*index_inp];
+
+	if ((quote == '"' || quote == '\'') && shell->tmp.active_quote != quote)
 	{
-		while (str[++i])
-		{
-			if (str[i] == quote)
-				return (0);
-		}
+		if (ft_is_closed(input, *index_inp, quote))
+			shell->tmp.active_quote = quote;
 	}
-	return (1);
-}
-
-void handle_quotes(t_shell *shell, char *input, int *index)
-{
-    char current_char = input[*index];
-
-    if (current_char == '"' || current_char == '\'')
-    {
-        if (shell->tmp.active_quote == 0 || shell->tmp.active_quote == current_char)
-        {
-            if (ft_is_closed(input, *index, current_char))
-            {
-                if (shell->tmp.active_quote == 0)
-                {
-                    shell->tmp.active_quote = current_char;
-                }
-                else
-                {
-                    shell->tmp.active_quote = 0;
-                }
-            }
-        }
-    }
+	else if (quote == shell->tmp.active_quote)
+		shell->tmp.active_quote = 0;
 }

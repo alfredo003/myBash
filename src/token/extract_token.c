@@ -34,29 +34,29 @@ static void toggle_quote_state(int *is_single_quoted, int *is_double_quoted,char
 	}
 }
 
-char *extract_token(char *input, int *index, int *has_quotes)
+char *extract_token(char *input, int *index_inp, int *has_quotes)
 {
 	char 	*token;
-	int		token_len;
+	int		index_tok;
 	int		is_single_quoted;
 	int 	is_double_quoted;
 
 	token = (char *)malloc(sizeof(char) * ft_strlen(input) + 1);
 	if (!token)
 		return (NULL);
-	token_len = 0;
+	index_tok = 0;
 	is_single_quoted = 0;
 	is_double_quoted = 0;
 	*has_quotes = 0;
-	while (input[*index])
+	while (input[*index_inp])
 	{
-		toggle_quote_state(&is_single_quoted, &is_double_quoted, input, index);
+		toggle_quote_state(&is_single_quoted, &is_double_quoted, input, index_inp);
 		if (is_double_quoted == 1 || is_single_quoted == 1)
 			*has_quotes = 1;
-		if (is_double_quoted == 0 && is_single_quoted == 0 && ((input[*index] == '|' || input[*index] == '>' || input[*index] == '<') || input[*index] == ' '))
+		if (is_double_quoted == 0 && is_single_quoted == 0 && ((input[*index_inp] == '|' || input[*index_inp] == '>' || input[*index_inp] == '<') || input[*index_inp] == ' '))
 			break ;
-		token[token_len++] = input[(*index)++];
+		token[index_tok++] = input[(*index_inp)++];
 	}
-	token[token_len] = '\0';
+	token[index_tok] = '\0';
 	return (token);
 }

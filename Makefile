@@ -15,7 +15,6 @@ SRCS =  src/main.c \
 		src/token/lex_process.c \
 		src/token/extract_token.c \
 		src/token/calculate_expansion.c \
-		src/token/process_expansion.c \
 		src/token/process_quote.c \
 		src/env/get_env.c
 
@@ -31,12 +30,12 @@ $(LIBFT):
 		@make -C $(LIBFT_DIR)
 clean: 
 		@$(RM) $(OBJS)
-		@make -C clean $(LIBFT_DIR)
+		@make clean -C $(LIBFT_DIR)
 		clear
 
 fclean: clean
 		$(RM) $(NAME)
-		@make -C fclean $(LIBFT_DIR)
+		@make fclean -C $(LIBFT_DIR)
 		clear
 
 re: fclean all
