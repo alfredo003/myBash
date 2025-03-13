@@ -30,7 +30,7 @@ typedef struct s_tmp_values
 typedef struct s_env
 {
 	char			*key;
-	int				equal;
+	bool				equal;
 	char			*value;
 	struct s_env	*next;
 }	t_env;
@@ -39,14 +39,17 @@ typedef struct s_shell
 {
     t_token *tokens;
     t_env *env;
+    //t_env *env_copy;
     bool is_parent_process;
     t_status_shell status;
     t_tmp_values tmp;
 
 } t_shell;
 
-
-void    init_shell(t_shell *shell);
+void    duplicate_env(t_shell *shell, char **env);
+//static t_env *add_env(char *env_var);
+void	free_matrix(char **matrix);
+void    init_shell(t_shell *shell,char **env);
 int     ft_readline(t_shell *shell, char **line);
 void	lexical_analysis(t_shell *shell, char *line);
 void	ft_free(void *ptr_to_free);

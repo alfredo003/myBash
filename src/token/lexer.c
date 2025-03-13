@@ -1,19 +1,18 @@
 #include "minishell.h"
 
-static t_token *gettokens(t_shell *shell, char *input_line)
+static void gettokens(t_token **tokens,t_shell *shell, char *input_line)
 {
-	t_token		*tokens;
-
-	tokens = (t_token *)malloc(sizeof(t_token) * 10000);
-	if (!tokens)
+	*tokens = (t_token *)malloc(sizeof(t_token) * ft_strlen(input_line)+1);
+	if (!*tokens)
 	{
 		shell->status.last_return = 1;
-		return (NULL);
+		return ;
 	}
-	ft_memset(tokens, 0, sizeof(t_token) * 10000);
-	process_tokens(shell, input_line, tokens);
+	//ft_memset(*tokens, 0, sizeof(t_token) * 10000);
+
+	process_tokens(shell, input_line, *tokens);
 	//organize_tokens(&tokens);
-	return (tokens);
+	//return (tokens);
 }
 
 void	lexical_analysis(t_shell *shell, char *input_line)
@@ -26,7 +25,7 @@ void	lexical_analysis(t_shell *shell, char *input_line)
 		ft_free(input_line);
 		return ;
 	}
-	tokens = gettokens(shell, input_line);
+	gettokens(&tokens,shell, input_line);
 	if (!tokens)
 	{
 		ft_free(input_line);
