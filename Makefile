@@ -17,7 +17,9 @@ SRCS =  src/main.c \
 		src/token/extract_token.c \
 		src/token/calculate_expansion.c \
 		src/token/process_quote.c \
-		src/env/get_env.c
+		src/env/get_env.c\
+		src/token/utils.c\
+
 
 OBJS = $(SRCS:.c=.o)
 

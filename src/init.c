@@ -1,13 +1,12 @@
 #include "minishell.h"
 
-static  void init_struct(t_shell *shell, char **env)
+void shell_defaults(t_shell *shell, char **env)
 {
      duplicate_env(shell, env);
 }
 
-void init_shell(t_shell *shell,char **env)
+void init_shell(t_shell *shell)
 {
-     init_struct(shell, env);
      char *input_line;
     // int process_status;
 
